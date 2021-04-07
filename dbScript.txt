@@ -1,0 +1,32 @@
+CREATE DATABASE IF NOT EXISTS park;
+
+//user credetials
+
+CREATE TABLE park.user(
+emp_id varchar(5) not null primary key,
+fname varchar(10) not null,
+lname varchar(10) not null,
+cell_number varchar(12) ,
+cnic_number varchar(15),
+salary int,
+city varchar(10)
+);
+Example:
+INSERT INTO `park`.`user` (`emp_id`, `fname`, `lname`, `cell_number`, `cnic_number`, `salary` , `city`) VALUES ('1122', 'Ahmed', 'Bilal', '03026899290', '34103-9529136-9','25000', 'Gujranwala');
+
+
+//login credentials
+
+CREATE TABLE park.login(
+emp_id varchar(5),
+user_name varchar(10) not null,
+password varchar(8) not null,
+user_role int(2) //(1 for owner, 2 for admin and 3 employees)
+);
+alter table park.login ADD FOREIGN KEY (emp_id) REFERENCES park.user(emp_id); 
+
+INSERT INTO `park`.`login` (`emp_id`, `user_name`, `password`, `user_role`) VALUES ('1122', 'admin', 'admin', 2);
+INSERT INTO `park`.`login` (`emp_id`, `user_name`, `password`, `user_role`) VALUES ('1122', 'admin1', 'admin1', 1);
+
+
+//other
